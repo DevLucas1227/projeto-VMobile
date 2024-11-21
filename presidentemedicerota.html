@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Rotas - Presidente Médici</title>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+
+        .controls {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .route-button {
+            background-color: #4b3d8f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .route-button:hover {
+            background-color: #4b3d8f;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq1eR68ZDAjEcS9TzpJmhg0kDCBMQ1fLs&callback=initMap"
+        async defer></script>
+    <script>
+        let map;
+        let markers = [];
+
+        function initMap() {
+            const chapeco = {
+                lat: -27.1000,
+                lng: -52.6150
+            };
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 13,
+                center: chapeco,
+            });
+        }
+
+        function addMarkersPresidenteMedici() {
+            const points = [{
+                    lat: -27.101806,
+                    lng: -52.612910,
+                    title: "Ponto 1"
+                },
+                {
+                    lat: -27.099400,
+                    lng: -52.613556,
+                    title: "Ponto 2"
+                },
+                {
+                    lat: -27.095475,
+                    lng: -52.614625,
+                    title: "Ponto 3"
+                },
+                {
+                    lat: -27.094290,
+                    lng: -52.611482,
+                    title: "Ponto 4"
+                },
+                {
+                    lat: -27.093345,
+                    lng: -52.607458,
+                    title: "Ponto 5"
+                },
+                {
+                    lat: -27.092705,
+                    lng: -52.604508,
+                    title: "Ponto 6"
+                },
+                {
+                    lat: -27.091988,
+                    lng: -52.601482,
+                    title: "Ponto 7"
+                },
+                {
+                    lat: -27.090823,
+                    lng: -52.595893,
+                    title: "Ponto 8"
+                },
+                {
+                    lat: -27.092962,
+                    lng: -52.594562,
+                    title: "Ponto 9"
+                },
+                {
+                    lat: -27.094281,
+                    lng: -52.593854,
+                    title: "Ponto 10"
+                },
+                {
+                    lat: -27.093555,
+                    lng: -52.590335,
+                    title: "Ponto 11"
+                },
+                {
+                    lat: -27.092953,
+                    lng: -52.588082,
+                    title: "Ponto 12"
+                },
+                {
+                    lat: -27.092342,
+                    lng: -52.584917,
+                    title: "Ponto 13"
+                },
+                {
+                    lat: -27.088483,
+                    lng: -52.586215,
+                    title: "Ponto 14"
+                },
+                {
+                    lat: -27.089046,
+                    lng: -52.588769,
+                    title: "Ponto 15"
+                },
+                {
+                    lat: -27.089170,
+                    lng: -52.589681,
+                    title: "Ponto 16"
+                },
+                {
+                    lat: -27.089982,
+                    lng: -52.595356,
+                    title: "Ponto 17"
+                },
+                {
+                    lat: -27.089209,
+                    lng: -52.595024,
+                    title: "Ponto 18"
+                },
+                {
+                    lat: -27.087795,
+                    lng: -52.593951,
+                    title: "Ponto 19"
+                },
+                {
+                    lat: -27.087480,
+                    lng: -52.592985,
+                    title: "Ponto 20"
+                },
+                {
+                    lat: -27.086563,
+                    lng: -52.592803,
+                    title: "Ponto 21"
+                },
+                {
+                    lat: -27.087079,
+                    lng: -52.596633,
+                    title: "Ponto 22"
+                },
+                {
+                    lat: -27.087432,
+                    lng: -52.598508,
+                    title: "Ponto 23"
+                },
+                {
+                    lat: -27.088655,
+                    lng: -52.604390,
+                    title: "Ponto 24"
+                },
+                {
+                    lat: -27.089094,
+                    lng: -52.606171,
+                    title: "Ponto 25"
+                },
+                {
+                    lat: -27.090555,
+                    lng: -52.607844,
+                    title: "Ponto 26"
+                }
+            ];
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
+            points.forEach((point) => {
+                const marker = new google.maps.Marker({
+                    position: {
+                        lat: point.lat,
+                        lng: point.lng
+                    },
+                    map: map,
+                    title: point.title,
+                    url: `https://www.google.com/maps?q=${point.lat},${point.lng}`
+                });
+
+                marker.addListener('click', function () {
+                    window.open(marker.url, '_blank');
+                });
+
+                markers.push(marker);
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="controls">
+        <button class="route-button" onclick="addMarkersPresidenteMedici()">Selecionar Rota Presidente Médici</button>
+    </div>
+    <div id="map"></div>
+</body>
+
+</html>

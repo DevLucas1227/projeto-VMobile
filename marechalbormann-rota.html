@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Rotas - Marechal Bormann</title>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+
+        .controls {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .route-button {
+            background-color: #4b3d8f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .route-button:hover {
+            background-color: #4b3d8f;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq1eR68ZDAjEcS9TzpJmhg0kDCBMQ1fLs&callback=initMap"
+        async defer></script>
+    <script>
+        let map;
+        let markers = [];
+
+        function initMap() {
+            const chapeco = {
+                lat: -27.1000,
+                lng: -52.6150
+            };
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 13,
+                center: chapeco,
+            });
+        }
+
+        function addMarkersMarechalBormann() {
+            const points = [{
+                    lat: -27.111156,
+                    lng: -52.617763,
+                    title: "Ponto 1"
+                },
+                {
+                    lat: -27.115430,
+                    lng: -52.616571,
+                    title: "Ponto 2"
+                },
+                {
+                    lat: -27.119530,
+                    lng: -52.617412,
+                    title: "Ponto 3"
+                },
+                {
+                    lat: -27.123605,
+                    lng: -52.618335,
+                    title: "Ponto 4"
+                },
+                {
+                    lat: -27.138489,
+                    lng: -52.616985,
+                    title: "Ponto 5"
+                },
+                {
+                    lat: -27.142582,
+                    lng: -52.618576,
+                    title: "Ponto 6"
+                },
+                {
+                    lat: -27.145244,
+                    lng: -52.619645,
+                    title: "Ponto 7"
+                },
+                {
+                    lat: -27.149140,
+                    lng: -52.621009,
+                    title: "Ponto 8"
+                },
+                {
+                    lat: -27.155329,
+                    lng: -52.625101,
+                    title: "Ponto 9"
+                },
+                {
+                    lat: -27.160238,
+                    lng: -52.628480,
+                    title: "Ponto 10"
+                },
+                {
+                    lat: -27.164189,
+                    lng: -52.631413,
+                    title: "Ponto 11"
+                },
+                {
+                    lat: -27.167503,
+                    lng: -52.633207,
+                    title: "Ponto 12"
+                },
+                {
+                    lat: -27.181425,
+                    lng: -52.643293,
+                    title: "Ponto 13"
+                },
+                {
+                    lat: -27.184044,
+                    lng: -52.644496,
+                    title: "Ponto 14"
+                },
+                {
+                    lat: -27.188446,
+                    lng: -52.648708,
+                    title: "Ponto 15"
+                },
+                {
+                    lat: -27.188010,
+                    lng: -52.650009,
+                    title: "Ponto 16"
+                },
+                {
+                    lat: -27.192251,
+                    lng: -52.648640,
+                    title: "Ponto 17"
+                },
+                {
+                    lat: -27.192144,
+                    lng: -52.646563,
+                    title: "Ponto 18"
+                },
+                {
+                    lat: -27.181361,
+                    lng: -52.643140,
+                    title: "Ponto 19"
+                },
+                {
+                    lat: -27.178459,
+                    lng: -52.640899,
+                    title: "Ponto 20"
+                },
+                {
+                    lat: -27.174620,
+                    lng: -52.637389,
+                    title: "Ponto 21"
+                },
+                {
+                    lat: -27.167517,
+                    lng: -52.633084,
+                    title: "Ponto 22"
+                },
+                {
+                    lat: -27.164028,
+                    lng: -52.630672,
+                    title: "Ponto 23"
+                },
+                {
+                    lat: -27.160253,
+                    lng: -52.628363,
+                    title: "Ponto 24"
+                },
+                {
+                    lat: -27.155371,
+                    lng: -52.624983,
+                    title: "Ponto 25"
+                },
+                {
+                    lat: -27.152313,
+                    lng: -52.622847,
+                    title: "Ponto 26"
+                },
+                {
+                    lat: -27.149259,
+                    lng: -52.620745,
+                    title: "Ponto 27"
+                },
+                {
+                    lat: -27.145235,
+                    lng: -52.619186,
+                    title: "Ponto 28"
+                },
+                {
+                    lat: -27.142592,
+                    lng: -52.618162,
+                    title: "Ponto 29"
+                },
+                {
+                    lat: -27.132145,
+                    lng: -52.614622,
+                    title: "Ponto 30"
+                },
+                {
+                    lat: -27.123853,
+                    lng: -52.618076,
+                    title: "Ponto 31"
+                },
+                {
+                    lat: -27.119803,
+                    lng: -52.617319,
+                    title: "Ponto 32"
+                },
+                {
+                    lat: -27.111177,
+                    lng: -52.617525,
+                    title: "Ponto 33"
+                },
+                {
+                    lat: -27.106270,
+                    lng: -52.618868,
+                    title: "Ponto 34"
+                },
+                {
+                    lat: -27.106430,
+                    lng: -52.613193,
+                    title: "Ponto 35"
+                }
+            ]
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
+            points.forEach((point) => {
+                const marker = new google.maps.Marker({
+                    position: {
+                        lat: point.lat,
+                        lng: point.lng
+                    },
+                    map: map,
+                    title: point.title,
+                    url: `https://www.google.com/maps?q=${point.lat},${point.lng}`
+                });
+
+                marker.addListener('click', function () {
+                    window.open(marker.url, '_blank');
+                });
+
+                markers.push(marker);
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="controls">
+        <button class="route-button" onclick="addMarkersMarechalBormann()">Selecionar Rota MarechalBormann</button>
+    </div>
+    <div id="map"></div>
+</body>
+
+</html>

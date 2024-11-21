@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Rotas - Quedas do Palmital</title>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+
+        .controls {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .route-button {
+            background-color: #4b3d8f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .route-button:hover {
+            background-color: #4b3d8f;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq1eR68ZDAjEcS9TzpJmhg0kDCBMQ1fLs&callback=initMap"
+        async defer></script>
+    <script>
+        let map;
+        let markers = [];
+
+        function initMap() {
+            const chapeco = {
+                lat: -27.1000,
+                lng: -52.6150
+            };
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 13,
+                center: chapeco,
+            });
+        }
+
+        function addMarkersQuedasdoPalmital() {
+            const points = [{
+                    lat: -27.1110559,
+                    lng: -52.6177362,
+                    title: "Ponto 1"
+                },
+                {
+                    lat: -27.1154173,
+                    lng: -52.6164986,
+                    title: "Ponto 2"
+                },
+                {
+                    lat: -27.1197813,
+                    lng: -52.6175096,
+                    title: "Ponto 3"
+                },
+                {
+                    lat: -27.1238845,
+                    lng: -52.6182520,
+                    title: "Ponto 4"
+                },
+                {
+                    lat: -27.1271728,
+                    lng: -52.6199458,
+                    title: "Ponto 5"
+                },
+                {
+                    lat: -27.1295075,
+                    lng: -52.6210652,
+                    title: "Ponto 6"
+                },
+                {
+                    lat: -27.1304457,
+                    lng: -52.6195126,
+                    title: "Ponto 7"
+                },
+                {
+                    lat: -27.1329102,
+                    lng: -52.6193281,
+                    title: "Ponto 8"
+                },
+                {
+                    lat: -27.1362215,
+                    lng: -52.6198391,
+                    title: "Ponto 9"
+                },
+                {
+                    lat: -27.1369157,
+                    lng: -52.6310362,
+                    title: "Ponto 10"
+                },
+                {
+                    lat: -27.1371916,
+                    lng: -52.6385198,
+                    title: "Ponto 11"
+                },
+                {
+                    lat: -27.1347815,
+                    lng: -52.6446864,
+                    title: "Ponto 12"
+                },
+                {
+                    lat: -27.1344239,
+                    lng: -52.6470640,
+                    title: "Ponto 13"
+                },
+                {
+                    lat: -27.1321537,
+                    lng: -52.6566205,
+                    title: "Ponto 14"
+                }
+            ];
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
+            points.forEach((point) => {
+                const marker = new google.maps.Marker({
+                    position: {
+                        lat: point.lat,
+                        lng: point.lng
+                    },
+                    map: map,
+                    title: point.title,
+                    url: `https://www.google.com/maps?q=${point.lat},${point.lng}`
+                });
+
+                marker.addListener('click', function () {
+                    window.open(marker.url, '_blank');
+                });
+
+                markers.push(marker);
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="controls">
+        <button class="route-button" onclick="addMarkersQuedasdoPalmital()">Selecionar Rota Quedas do Palmital</button>
+    </div>
+    <div id="map"></div>
+</body>
+
+</html>
